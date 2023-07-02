@@ -1,0 +1,72 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        
+// Set<Integer>set=new HashSet<>();
+        
+//         int n=nums.length;
+        
+//         for(int i=0;i<nums.length;i++){
+//             if(!set.add(nums[i]))
+//             {
+//                 return nums[i];
+//             }
+//         }
+//         return n;
+        
+//         int low=1;
+//         int high=nums.length-1;
+        
+//         while(low<high)
+//         {
+//             int count=0;
+//             int mid=(low+high)/2;
+            
+//          for(int i=0;i<nums.length;i++)
+//          {
+//              if(nums[i]<=mid)
+//                  count++;
+//          }
+//             if(count<=mid)
+//             {
+//                 low=mid+1;
+//             }
+//             else{
+//                 high=mid;
+//             }
+            
+//         }
+//         return low;
+        
+    //     for(int i = 0; i < nums.length; i++){
+    //       if(nums[Math.abs(nums[i])] < 0) 
+    // return nums[i] < 0 ? -nums[i] : nums[i]; // check if index value is negative, means already visited
+    //       nums[Math.abs(nums[i])] *= -1; // Mark -negative on visit the index item
+    //     }
+    //     return 0;
+    // }
+        
+//         int n=nums.length;
+// int sum=0;
+//         for(int i=0;i<nums.length-2;i++)
+//         {
+//             sum=sum+i;
+//         }
+//         int sum1=(n*(n+1)/2);
+//         return sum-sum1;  
+        Set<Integer>Set= new HashSet<>();
+        int ans=nums[0];
+        
+        for(int i:nums)
+        {
+            if(Set.contains(i))
+            {
+            ans=i;
+                break;
+            }
+            Set.add(i);
+        }
+        return ans;
+
+    }
+    
+}
