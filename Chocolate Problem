@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	static int findMinDiff(int n, int m, ArrayList<Integer> chocolates) {
+		// Write your code here.
+
+		Collections.sort(chocolates);
+	int min=Integer.MAX_VALUE;
+
+		for(int i=0;i+m-1<n;i++)
+		{
+
+			int diff=chocolates.get(i+m-1)-chocolates.get(i);
+
+			if(min>diff)
+			{
+
+				min=diff;
+			}
+		}
+		return min;
+	}
+}
