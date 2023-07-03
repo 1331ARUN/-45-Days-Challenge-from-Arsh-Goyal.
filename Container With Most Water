@@ -1,0 +1,29 @@
+class Solution {
+    public int maxArea(int[] height)
+     {
+int globalmax=Integer.MIN_VALUE;
+
+int i=0;
+int j=height.length-1;
+
+while(i<=j)
+{
+    int currentarea=(j-i)*Math.min(height[j],height[i]);
+
+    if(globalmax<currentarea)
+    {
+        globalmax=currentarea;
+    }
+
+    if(height[i]<height[j])
+    {
+    i++;
+    }
+    else
+    {
+    j--;
+    }
+}
+return globalmax;
+    }
+}
