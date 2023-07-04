@@ -1,0 +1,97 @@
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        int n = nums.length;
+
+        Arrays.sort(nums);
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+
+long target2 = (long) target - (long) nums[i] - (long) nums[j];
+                int lo = j + 1, hi = n - 1;
+
+                while (lo < hi) 
+                {
+                    int twoSum = nums[lo] + nums[hi];
+
+                    if (twoSum < target2) 
+                    lo++;
+                    else if (twoSum > target2)
+                    hi--;
+                    else 
+                    {
+List<Integer> quad = Arrays.asList(nums[i], nums[j], nums[lo], nums[hi]);
+                        ans.add(quad);
+
+        while (lo < hi && nums[lo] == quad.get(2)) 
+        lo++;
+        while (lo < hi && nums[hi] == quad.get(3))
+         hi--;
+                    }
+                }
+
+                while (j + 1 < n && nums[j] == nums[j + 1]) 
+                j++;
+            }
+
+            while (i + 1 < n && nums[i] == nums[i + 1]) 
+            i++;
+        }
+
+        return ans;
+    }
+}
+
+// TC: O(n * logn) + O(n ^ 3) => O(n ^ 3)
+// SC: O(1) - ignoring the output array
+//     for(int i=0;i<nums.length-3;i++)
+//     {
+
+//         for(int j=i+1;j<nums.length-2;j++)
+//         {
+//             int sum=target-nums[j]-nums[i];
+//             int st=j+1;
+//             int end=nums.length-1;
+
+//             while(st<=end)
+//             {
+//                 int t=nums[st]+nums[end];
+
+// if(t<sum)
+
+//     st++;
+
+// else if(t>sum)
+
+//     end--;
+
+// else{
+//     List<Integer> quad=new ArrayList<>();
+
+//     quad.add(nums[i]);
+//     quad.add(nums[j]);
+//     quad.add(nums[st]);
+//     quad.add(nums[end]);
+
+//     ans.add(quad);
+
+
+//                 while(st<end&&nums[st]==quad.get(2))
+                
+//                     ++st;
+                
+//                 while(st<end &&nums[end]==quad.get(3));
+                
+//                 --end;
+                
+//                 }
+//             }
+//                 while(j+1<n&&nums[j+1]==nums[j])
+//                 ++j;
+//             }
+//                 while(i+1<n&&nums[i+1]==nums[i])
+//                 ++i;
+//         }
+// return ans;
+//}
