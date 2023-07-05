@@ -1,0 +1,72 @@
+class Solution {
+    public int largestRectangleArea(int[] a) {
+        
+        int maxArea=0;
+        int ps[]=prevSmaller(a);
+        int ns[]=nextSmaller(a);
+
+        for(int i=0;i<a.length;i++)
+        {
+            int width=ps[i]-ns[i]-1;
+            int area=a[i]*width;
+            if(area>maxArea)
+            {
+                maxArea=area;
+            }
+        }
+
+        return maxArea;
+    }
+
+    int []prevSmaller(int []a)
+    {
+        int ps[]=new int[a.length];
+        Stack<Integer>s=new Stack<>();
+        s.push(a.length-1);
+
+        ps[a.length-1]=a.length;
+
+        for(int i=a.length-2;i>=0;i--)
+        {
+            while(s.size()>0&& a[s.peek()]>=a[i])
+            {
+                s.pop();
+            }
+            if(s.size()==0)
+            {
+                ps[i]=a.length;
+            }
+            else{
+                ps[i]=s.peek();
+            }
+            s.push(i);
+        }
+
+        return ps;
+    }
+    int []nextSmaller(int []a)
+    {
+        int ns[]=new int[a.length];
+        Stack<Integer>s=new Stack<>();
+        s.push(0);
+        ns[0]=-1;
+        for(int i=1;i<a.length;i++)
+        {
+            while(s.size()>0&&a[s.peek()]>=a[i])
+            {
+                s.pop();
+            }
+            if(s.size()==0)
+            {
+                ns[i]=-1;
+            }
+            else
+            {
+                ns[i]=s.peek();
+            }
+            s.push(i);
+        }
+
+        return ns;
+    }
+}
