@@ -1,0 +1,27 @@
+class Solution 
+{
+    public boolean isPowerOfTwo(int n) 
+    {
+
+//         if(n==1)
+//         {
+//             return true;
+//         }
+// boolean ans=false;
+
+// double ans1=Math.sqrt(n);
+
+// if(ans1%2==0)
+// {
+//     ans=true;
+// }
+// else{
+//     ans=false;
+// }
+
+// return ans;
+
+ return n > 0 && (n & (n - 1)) == 0;
+        
+    }
+}
