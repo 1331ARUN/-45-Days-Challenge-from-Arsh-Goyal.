@@ -1,0 +1,64 @@
+class Solution {
+    public int maxPoints(int[][] points) {
+        if (points == null || points.length == 0) {
+            return 0;
+        }
+        
+        int maxPoints = 1;  // Minimum number of points on a line is 1
+        
+        for (int i = 0; i < points.length; i++) {
+            Map<String, Integer> slopeCounts = new HashMap<>();
+            int duplicatePoints = 0;  // Count of duplicate points
+            
+            for (int j = i + 1; j < points.length; j++) {
+                int x1 = points[i][0];
+                int y1 = points[i][1];
+                int x2 = points[j][0];
+                int y2 = points[j][1];
+                
+                if (x1 == x2 && y1 == y2) {
+                    duplicatePoints++;
+                } else {
+                    String slope = getSlope(x1, y1, x2, y2);
+                    slopeCounts.put(slope, slopeCounts.getOrDefault(slope, 1) + 1);
+                }
+            }
+            
+            // Update maximum points on a line
+            maxPoints = Math.max(maxPoints, duplicatePoints + 1);
+            
+            for (int count : slopeCounts.values()) {
+                // Update maximum points on a line
+                maxPoints = Math.max(maxPoints, count + duplicatePoints);
+            }
+        }
+        
+        return maxPoints;
+    }
+    
+    // Helper method to calculate slope as a string
+    private static String getSlope(int x1, int y1, int x2, int y2) {
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        
+        if (dx == 0) {
+            return "inf";  // Represent vertical line with infinite slope
+        }
+        
+        int gcd = gcd(dx, dy);
+        dx /= gcd;
+        dy /= gcd;
+        
+        return dy + "/" + dx;
+    }
+    
+    // Helper method to calculate the greatest common divisor (gcd) of two numbers
+    private static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        
+        return gcd(b, a % b);
+    }
+
+    }
