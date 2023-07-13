@@ -1,0 +1,44 @@
+
+
+
+
+
+
+class Solution
+{
+    //Function to find the minimum number of swaps required to sort the array.
+    
+     public static void swap(int[] nums, int i, int j)
+     {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    public int minSwaps(int nums[])
+    {
+        // Code here
+        int n=nums.length;
+         int ans = 0;
+        Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+        int[] temp = Arrays.copyOf(nums, n);
+        Arrays.sort(temp);
+        
+        for(int i=0; i<n; i++) 
+        {
+            m.put(nums[i], i);
+        }
+         
+        for(int i=0; i<n; i++) 
+        {
+            if(nums[i] != temp[i])
+            {
+                ans++;
+                int init = nums[i];
+                swap(nums, i, m.get(temp[i]));
+                m.put(init, m.get(temp[i]));
+                m.put(temp[i], i);
+            }
+        }
+        return ans;
+    }
+    }
