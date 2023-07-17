@@ -1,0 +1,153 @@
+class Solution
+{
+
+    static Node subLinkedList(Node l11, Node l22)
+
+    {
+      ///// Removing first zeros
+
+      while(l11.data==0&&l11.next!=null){l11=l11.next;}
+
+      while(l22.data==0&&l22.next!=null){l22=l22.next;}
+      int first=0;
+      int second=0;
+      Node l1=l11;
+      Node l2=l22;
+      int i=0;
+      //storing both lists first 4 digits in number for :(if both list have same size
+
+      // then we will compare which lists first 4 number is graeter   
+      while(i<4&&l1!=null&&l2!=null){
+
+          first=first*10+l1.data;
+
+          second=second*10+l2.data;
+
+          i++;
+
+          l1=l1.next;
+
+          l2=l2.next;
+
+      }
+      // reverse both list 
+      l11=reverse(l11);
+
+        l22=reverse(l22);
+        int substract=0;
+// creating dummy node for reference of new list
+
+        Node dummy=new Node(0);
+        Node curr=dummy;
+        int borrow=0;
+        int l1size=0,l2size=0;
+        l1=l11;
+         l2=l22;
+         // calculating both lists length
+while(l1!=null){
+    l1size=l1size+1;; l1=l1.next;
+    
+}
+while(l2!=null){
+    l2size=l2size+1; l2=l2.next;
+    
+}
+        // checking which list size is greater 
+
+        //which list size is greater that will be l1 and other is l2
+
+        //If both have same size then compare it by first and second number ie. initially we have stored
+
+        if(l1size>l2size ||l1size==l2size&&first>second ) 
+        {
+            l1=l11; l2=l22;
+            
+        }
+
+        else{
+            l1=l22; l2=l11;
+            
+        }
+        // substracting lists
+        while(l1!=null || l2!=null)
+        {
+
+            int a=(l1!=null)?l1.data:0;
+
+            int b=(l2!=null)?l2.data:0;
+            substract=borrow+a-b;
+
+            if(substract<0)
+            {
+
+                borrow=-1;
+
+                substract=substract+10;
+
+            }
+
+            else{borrow=0;}
+
+            Node nNode=new Node(substract);
+
+            curr.next=nNode;
+
+            curr=nNode;
+
+          if(l1!=null){ l1=l1.next;}
+
+            if(l2!=null){l2=l2.next;}
+
+        }
+        // reversing final list with refernce of dummy node
+
+        dummy.next= reverse(dummy.next);
+
+        curr=dummy.next;
+        //removing initial zeros if present in final list 
+
+         while(curr.data==0&&curr.next!=null){
+
+             curr=curr.next;
+
+         }
+
+      
+
+      // returning new list
+
+         return curr;
+    }
+
+    static Node reverse(Node head){
+
+        if(head==null || head.next==null)
+        {
+            return head;
+            
+        }
+        Node prev=head;
+
+        Node curr=head.next;
+
+        while(curr!=null){
+
+            Node next=curr.next;
+
+            curr.next=prev;
+
+            prev=curr;
+
+            curr=next;
+
+        }
+
+        head.next=null;
+
+        head=prev;
+
+        return head;
+
+    }
+
+}
