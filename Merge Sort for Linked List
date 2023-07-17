@@ -1,0 +1,124 @@
+class Solution
+{
+    //Function to sort the given linked list using Merge Sort.
+    static Node findmid(Node head)
+    {
+        if(head==null)
+        return head;
+        Node slow=head;
+        Node fast=head.next;
+        
+        while(fast!=null&&fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    
+    static Node merge(Node first,Node secound)
+    {
+        if(first==null)
+        {
+            return secound;
+        }
+        if(secound==null)
+        {
+            return first;
+        }
+        Node head;
+        if(first.data<secound.data)
+        {
+           
+           head=first;
+           head.next=merge(first.next,secound);
+           
+        }
+        else{
+            head=secound;
+            head.next=merge(first,secound.next);
+        }
+        return head;
+    }
+    static Node mergeSort(Node head)
+    {
+        // add your code here
+        if(head==null|| head.next==null)
+        {
+            return head;
+        }
+        Node mid=findmid(head);
+        Node first=head;
+        Node secound=mid.next;
+        mid.next=null;
+        
+        first=mergeSort(first);
+        secound=mergeSort(secound);
+        
+        Node ans=merge(first,secound);
+        return ans;
+    }
+}
+
+
+class Solution
+{
+    //Function to sort the given linked list using Merge Sort.
+    static Node findmid(Node head)
+    {
+        if(head==null)
+        return head;
+        Node slow=head;
+        Node fast=head.next;
+        
+        while(fast!=null&&fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    
+    static Node merge(Node first,Node secound)
+    {
+        if(first==null)
+        {
+            return secound;
+        }
+        if(secound==null)
+        {
+            return first;
+        }
+        Node head;
+        if(first.data<secound.data)
+        {
+           
+           head=first;
+           head.next=merge(first.next,secound);
+           
+        }
+        else{
+            head=secound;
+            head.next=merge(first,secound.next);
+        }
+        return head;
+    }
+    static Node mergeSort(Node head)
+    {
+        // add your code here
+        if(head==null|| head.next==null)
+        {
+            return head;
+        }
+        Node mid=findmid(head);
+        Node first=head;
+        Node secound=mid.next;
+        mid.next=null;
+        
+        first=mergeSort(first);
+        secound=mergeSort(secound);
+        
+        Node ans=merge(first,secound);
+        return ans;
+    }
+}
