@@ -1,0 +1,22 @@
+
+class Solution {
+    
+    public String reverse(String S){
+        Stack<Character> st=new Stack<>();
+        //code here
+        for(char c:S.toCharArray())
+        {
+            st.push(c);
+        }
+        StringBuilder sb=new StringBuilder();
+        
+        for(int j=0;j<S.length();j++)
+        {
+            sb.append(st.pop());
+        }
+        
+        return new String(sb);
+        
+    }
+
+}
