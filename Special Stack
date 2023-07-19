@@ -1,0 +1,42 @@
+
+class GfG{
+	public void push(int a,Stack<Integer> s)
+	{
+	    //add code here.
+	    s.push(a);
+	    
+	}
+	public int pop(Stack<Integer> s)
+        {
+            //add code here.
+            int top=s.pop();
+            return top;
+	    }
+	public int min(Stack<Integer> s)
+        {
+           //add code here.
+           int minelement=s.peek();
+           while(!s.isEmpty())
+           {
+               if(s.peek()<minelement)
+               {
+                   minelement=s.peek();
+               }
+    
+              s.pop();
+           }
+           
+         return minelement;  
+	}
+	public boolean isFull(Stack<Integer>s, int n)
+        {
+            
+           //add code here.
+           return s.size()==n;
+	}
+	public boolean isEmpty(Stack<Integer>s)
+        {
+           //add code here.
+           return s.size()==0;
+	}
+}
