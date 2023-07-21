@@ -1,0 +1,69 @@
+
+
+
+//Function to check whether a Binary Tree is BST or not.
+public static void findPreSuc(Node root, int key)
+{
+    // code here.
+    
+    /* There are two static nodes defined above pre(representing predecessor) and suc(representing successor) as follows:
+       static Node pre=null,suc=null
+       You need to update these both.
+       And the data inside these classes will be printed automatically by the driver code. 
+    */
+    
+    // Node curr=root;
+    // Node ceil=null;
+    // Node prev=root;
+    // Node suc=root;
+    // while(curr!=null)
+    // {
+        
+    //     if(curr.data>key)
+    //     {
+    //         ceil=curr;
+    //         curr=curr.left;
+    //     }
+    //     else{
+    //         curr=curr.right;
+    //     }
+    // }
+    // curr=root;
+    // Node floor=null;
+    
+    // while(curr!=null)
+    // {
+    //     if(curr.data<key)
+    //     {
+    //         floor=curr;
+    //         curr=curr.right;
+    //     }
+    //     else{
+    //         curr=curr.left;
+    //     }
+    // }
+    
+    // prev=floor;
+    
+      if(root == null) 
+      return;
+    
+    findPreSuc(root.left, key);
+    
+    if(root.data < key)
+    {
+        if(pre == null) pre = root;
+        else pre.data = Math.max(pre.data, root.data);
+    }
+    
+    if(root.data > key) 
+    {
+        if(suc == null) suc = root;
+        else suc.data = Math.min(suc.data, root.data); 
+        return;
+    }
+    
+    findPreSuc(root.right, key);
+}
+}
+   
