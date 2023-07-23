@@ -1,0 +1,59 @@
+class GfG {
+    int findDist(Node root, int a, int b) {
+        // Your code here
+        Node node=lca(root,a,b);
+        int q1=help(node,a);
+        int q2=help(node,b);
+        
+        return q1+q2-2;
+    }
+    public Node lca(Node root,int i,int a)
+    {
+        if(root==null)
+        {
+            return null;
+        }
+        
+        if(root.data==i||root.data==a)
+        {
+            return root;
+        }
+        Node left=lca(root.left,i,a);
+        Node right=lca(root.right,i,a);
+        
+        
+        if(left==null)
+        {
+            return right;
+        }
+        if(right==null)
+        {
+            return left;
+        }
+        
+        return root;
+        
+    }
+    public int help(Node root,int val)
+    {
+        if(root==null)
+        {
+            return 0;
+        }
+        if(root.data==val)
+        {
+            return 1;
+        }
+        int left=help(root.left,val);
+        int right=help(root.right,val);
+        
+        if(left!=0||right!=0)
+        {
+            return Math.max(left,right)+1;
+        }
+        else
+        {
+            return left+right;
+        }
+    }
+    }
