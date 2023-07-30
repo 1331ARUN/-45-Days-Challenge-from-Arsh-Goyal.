@@ -1,0 +1,18 @@
+class Solution{
+    
+    int preIndex = 0;
+   Node constructTree(int n, int pre[], char preLN[])
+   {
+       if(preIndex==n) 
+       return null;
+       Node node = new Node(pre[preIndex]);
+       if(preLN[preIndex++]=='L')
+       return node;
+       else
+       {
+           node.left = constructTree(n, pre, preLN);
+           node.right = constructTree(n, pre, preLN);
+           return node;
+}
+   }
+}
