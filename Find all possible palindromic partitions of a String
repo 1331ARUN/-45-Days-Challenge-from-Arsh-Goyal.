@@ -1,0 +1,63 @@
+
+
+//User function Template for Java
+
+class Solution {
+    static ArrayList<ArrayList<String>> allPalindromicPerms(String S) {
+        // code here
+        ArrayList<String>list=new ArrayList<>();
+        
+        ArrayList<ArrayList<String>>result=new ArrayList<>();
+        helper(S,list,result,0);
+        
+        return result;
+    }
+    
+    static void helper (String S,ArrayList<String>list,ArrayList<ArrayList<String>>result,int index)
+    {
+        
+        if(index==S.length())
+        {
+            result.add(new ArrayList<>(list));
+            
+            return;
+        }
+        
+        String temp="";
+        
+        for(int i=index;i<S.length();i++)
+        {
+            
+            temp+=S.charAt(i);
+            
+            
+                 if(ispal(temp))
+            {
+                list.add(temp);
+                
+                helper(S,list,result,i+1);
+                
+                list.remove(list.size()-1);
+         
+        }
+        
+    }
+    }
+    
+    static boolean ispal(String str)
+    {
+        int st=0;
+        int end=str.length()-1;
+        while(st<end)
+        {
+            
+            if(str.charAt(st)!=str.charAt(end))
+            return false;
+            
+            st++;
+            end--;
+        }
+        
+        return true;
+    }
+};
