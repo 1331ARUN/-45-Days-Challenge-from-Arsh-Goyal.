@@ -33,16 +33,14 @@ class Solution
 {
     public int lastIndex( String s) 
     {
-        for(int i=s.length()-1;i>=0;i--)
-        {
-            
-            if(s.charAt(i)=='1')
-            {
-                
-                return i;
+         char[] charArray = s.toCharArray();
+        Arrays.sort(charArray);
+
+        for (int i = charArray.length - 1; i >= 0; i--) {
+            if (charArray[i] == '1') {
+                return s.lastIndexOf('1', i);
             }
         }
-        return -1;
-    
+        return -1;  // If no '1' is found
     }
-}
+    }
