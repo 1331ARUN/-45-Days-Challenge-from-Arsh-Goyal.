@@ -93,7 +93,7 @@ class Solution {
      {
          return true;
      }
-       else
+         else
          return false;
      }
      Node t1=head1;
