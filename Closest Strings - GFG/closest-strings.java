@@ -28,32 +28,59 @@ class GFG {
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
-      class Solution {
+
+class Solution {
     int shortestDistance(ArrayList<String> s, String word1, String word2) {
-        int minDistance = Integer.MAX_VALUE;
-        int word1Index = -1;
-        int word2Index = -1;
-
-        for (int i = 0; i < s.size(); i++) {
-            if (s.get(i).equals(word1)) {
-                word1Index = i;
-                if (word2Index != -1) {
-                    minDistance = Math.min(minDistance, Math.abs(word1Index - word2Index));
-                }
-            } else if (s.get(i).equals(word2)) {
-                word2Index = i;
-                if (word1Index != -1) {
-                    minDistance = Math.min(minDistance, Math.abs(word1Index - word2Index));
-                }
+        // code here
+        int ans=Integer.MAX_VALUE;
+        int first=-1;
+         int last=-1;
+        for(int i=0;i<s.size();i++)
+        {
+            if(s.get(i).equals(word1))
+            {
+            first=i;
+           // break;
             }
-        }
-
-        // Check if both words were found in the list
-        if (word1Index == -1 || word2Index == -1) {
-            return 0; // Return -1 if either word is missing
-        }
-
-        return minDistance;
+        //}
+       
+        
+        // for(int i=s.size()-1;i>=0;i-- )
+        // {
+            if(s.get(i).equals(word2))
+            {
+                last=i;
+                //break;
+            }
+            if(first != -1 && last != -1)
+            {
+                ans = Math.min(ans,Math.abs(first-last));
+            }
     }
-}
+       // }
+       // return Math.abs(last-first);
+       return ans;
+    }
+};
+
+
+// int ans = Integer.MAX_VALUE;
+//         int first = -1;
+//         int second = -1;
+//         for(int i=0;i<s.size();i++){
+//             if(s.get(i).equals(word1)){
+//                 first = i;
+//             }
+//             if(s.get(i).equals(word2)){
+//                 second = i;
+//             }
+            
+//             if(first != -1 && second != -1)
+//             {
+//                 ans = Math.min(ans,Math.abs(first-second));
+//             }
+//         }
+//         return ans;
