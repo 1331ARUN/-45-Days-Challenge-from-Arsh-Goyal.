@@ -83,8 +83,8 @@ class Solution{
 //     }
 // }
 
-    if(arr==null||arr.length<=1)
-       return null;
+    // if(arr==null||arr.length<=1)
+    //   return null;
 
 ArrayList<Integer> al= new ArrayList<Integer>();
         int i=N-2;
